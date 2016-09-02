@@ -23,3 +23,6 @@
 
   - name: Install MySQL
     apt: pkg=mysql-server state=latest
+
+  - name: make sure apache is running
+    action: service name=mysql state=started enabled=true
