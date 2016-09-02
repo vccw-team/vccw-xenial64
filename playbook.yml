@@ -1,0 +1,25 @@
+- hosts: all
+  become: yes
+  vars:
+    mysql_root_pass: wordpress
+
+  tasks:
+
+  # Apache2
+
+  - name: ensure apache is installed
+    apt: name=apache2 state=present
+
+  - name: make sure apache is running
+    action: service name=apache2 state=started enabled=true
+
+  # MySQL
+
+  - name: Set MySQL root password before installing
+    debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_pass | quote}}' vtype='password'
+
+  - name: Confirm MySQL root password before installing
+    debconf: name='mysql-server' question='mysql-server/root_password_again' value='{{mysql_root_pass | quote}}' vtype='password'
+
+  - name: Install MySQL
+    apt: pkg=mysql-server state=latest
