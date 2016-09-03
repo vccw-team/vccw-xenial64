@@ -10,7 +10,7 @@
 
 ## How to create a box
 
-Install vagrant-vbguest
+Install vagrant-vbguest.
 
 ```
 $ vagrant plugin install vagrant-vbguest
