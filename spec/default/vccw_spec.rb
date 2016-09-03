@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-# Apache2
-
 describe package('apache2') do
   it { should be_installed }
 end
@@ -14,8 +12,6 @@ end
 describe port(80) do
   it { should be_listening }
 end
-
-# MySQL
 
 describe package('mysql-server') do
   it { should be_installed }
@@ -34,4 +30,22 @@ describe command('echo "show databases;" | mysql -uroot -pwordpress') do
   let(:disable_sudo) { true }
   its(:exit_status) { should eq 0 }
   its(:stdout) { should match /information_schema/ }
+end
+
+describe command('php -v') do
+  let(:disable_sudo) { true }
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match /PHP 7\./ }
+end
+
+describe command('node -v') do
+  let(:disable_sudo) { true }
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match /v6\.5\.0/ }
+end
+
+describe command('ruby -v') do
+  let(:disable_sudo) { true }
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match /ruby 2\.3\./ }
 end

@@ -49,12 +49,6 @@
   # Ruby
   - name: Install Ruby
     apt: pkg=ruby state=latest
-  - name: Install Bundler
-    shell: gem instal {{ item }}
-    with_items:
-      bundler
-      wordmove
-    become: yes
 
   # Node.js
   - name: Download Node.js PPM
