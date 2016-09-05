@@ -29,12 +29,6 @@ $ bundle install --path=vendor/bundle
 $ bundle exec rake spec
 ```
 
-Clear some files.
-
-```
-$ vagrant ssh -c "sudo bash /vagrant/clear.sh"
-```
-
 Create a package.
 
 ```

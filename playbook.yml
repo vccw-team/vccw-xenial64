@@ -59,6 +59,16 @@
   - name: Install Node.js
     apt: name=nodejs state=latest
 
+  # Add vagrant user
+  - name: Create a group vagrant
+    group: name=vagrant
+  - name: Create a user vagrant
+    user: name=vagrant group=vagrant shell=/bin/bash comment="Vagrant"
+  - name: Create ~/.ssh directory
+    file: path=/home/vagrant/.ssh state=directory owner=vagrant group=vagrant mode=0700
+  - name: Download the insecure key for vagrant user
+    get_url: url=https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub dest=/home/vagrant/.ssh/authorized_keys owner=vagrant group=vagrant mode=0400
+
   handlers:
     - name: restart apache
       action: service name=apache2 state=restarted
