@@ -50,27 +50,14 @@ describe command('ruby -v') do
   its(:stdout) { should match /ruby 2\.3\./ }
 end
 
-describe user('vagrant') do
+describe user('ubuntu') do
   it { should exist }
   it { should belong_to_group 'ubuntu' }
   it { should have_login_shell '/bin/bash' }
   it { should have_authorized_key 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key' }
 end
 
-describe user('ubuntu') do
-  it { should exist }
-  it { should have_login_shell '/bin/false' }
-end
-
 describe file('/etc/ssh/sshd_config') do
   it { should be_file }
   it { should contain "PasswordAuthentication no" }
-end
-
-describe file('/etc/sudoers.d/90-vagrant-users') do
-  it { should be_file }
-  it { should be_mode 440 }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
-  it { should contain "vagrant ALL=(ALL) NOPASSWD:ALL" }
 end

@@ -59,31 +59,15 @@
   - name: Install Node.js
     apt: name=nodejs state=latest
 
-  # Add vagrant user
-  - name: Create a group vagrant
-    group: name=vagrant
-  - name: Create a user vagrant
-    user: name=vagrant group=vagrant groups=ubuntu shell=/bin/bash comment="Vagrant"
+  # SSH
   - name: Create ~/.ssh directory
-    file: path=/home/vagrant/.ssh state=directory owner=vagrant group=vagrant mode=0700
+    file: path=/home/ubuntu/.ssh state=directory owner=ubuntu group=ubuntu mode=0700
   - name: Download the insecure key for vagrant user
-    get_url: url=https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub dest=/home/vagrant/.ssh/authorized_keys owner=vagrant group=vagrant mode=0400
-
-  # sudo
-
-  - name: Add file to sudoers.d
-    file: path=/etc/sudoers.d/90-vagrant-users state=touch
-  - lineinfile: dest=/etc/sudoers.d/90-vagrant-users line="vagrant ALL=(ALL) NOPASSWD:ALL"
-  - file: path=/etc/sudoers.d/90-vagrant-users owner=root group=root mode=0440
+    get_url: url=https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub dest=/home/ubuntu/.ssh/authorized_keys force=yes
 
   # SSHD
   - name: disable sshd password auth
     lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication yes" line="PasswordAuthentication no"
-
-  # for ubuntu user
-
-  - name: Disable ubuntu user
-    user: name=ubuntu shell=/bin/false
 
   handlers:
     - name: restart apache

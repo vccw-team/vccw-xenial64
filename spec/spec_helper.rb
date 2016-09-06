@@ -25,7 +25,7 @@ config.close
 
 options = Net::SSH::Config.for(host, [config.path])
 
-options[:user] = "vagrant"
+options[:user] = "ubuntu"
 options[:keys] = "~/.vagrant.d/insecure_private_key"
 
 set :host,        options[:host_name] || host
