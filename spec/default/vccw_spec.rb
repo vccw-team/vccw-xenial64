@@ -66,3 +66,11 @@ describe file('/etc/ssh/sshd_config') do
   it { should be_file }
   it { should contain "PasswordAuthentication no" }
 end
+
+describe file('/etc/sudoers.d/90-vagrant-users') do
+  it { should be_file }
+  it { should be_mode 440 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  it { should contain "vagrant ALL=(ALL) NOPASSWD:ALL" }
+end
