@@ -2,11 +2,11 @@
 
 set -ex
 
-apt-get clean
+sudo apt-get clean
 
-ln -s -f /dev/null /etc/udev/rules.d/70-persistent-net.rules
+sudo ln -s -f /dev/null /etc/udev/rules.d/70-persistent-net.rules
 
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
 
 history -c

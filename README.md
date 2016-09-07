@@ -32,7 +32,7 @@ $ bundle exec rake spec
 Optimization
 
 ```
-$ ssh -p 2222 -o 'StrictHostKeyChecking no' -i ~/.vagrant.d/insecure_private_key ubuntu@127.0.0.1 "sudo bash /vagrant/clear.sh"
+$ ssh -p 2222 -o 'StrictHostKeyChecking no' -i ~/.vagrant.d/insecure_private_key ubuntu@127.0.0.1 "bash /vagrant/clear.sh"
 ```
 
 Create a package.
