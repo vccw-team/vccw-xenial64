@@ -9,6 +9,8 @@
     apt: name={{ item }} state=latest
     with_items:
       - build-essential
+      - ruby-dev 
+      - libsqlite3-dev
 
   # Apache2
 
