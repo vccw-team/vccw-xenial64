@@ -90,8 +90,8 @@
       line: "PasswordAuthentication no"
 
   # Optimization
-  - shell: bash /vagrant/scripts/cleanup.sh
-  - shell: bash /vagrant/scripts/minimize.sh
+  - shell: bash /vagrant/provision/scripts/cleanup.sh
+  - shell: bash /vagrant/provision/scripts/minimize.sh
 
   handlers:
     - name: restart-apache
