@@ -1,4 +1,4 @@
-# Base box for the Ubuntu/Xenial64
+# Ubuntu/Xenial64 based box for the VCCW v3.x
 
 ## What's installed
 
