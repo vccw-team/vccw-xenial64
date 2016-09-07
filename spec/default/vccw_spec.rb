@@ -38,6 +38,11 @@ describe command('php -v') do
   its(:stdout) { should match /PHP 7\./ }
 end
 
+describe command('composer help') do
+  let(:disable_sudo) { true }
+  its(:exit_status) { should eq 0 }
+end
+
 describe command('node -v') do
   let(:disable_sudo) { true }
   its(:exit_status) { should eq 0 }

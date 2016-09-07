@@ -9,29 +9,35 @@
     apt: name={{ item }} state=latest
     with_items:
       - build-essential
-      - ruby-dev 
+      - ruby-dev
       - libsqlite3-dev
+      - jq
 
   # Apache2
-
   - name: Ensure apache is installed
     apt: pkg=apache2 state=latest
   - name: Make sure apache is running
     action: service name=apache2 state=started enabled=true
 
   # MySQL
-
   - name: Set MySQL root password before installing
-    debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_pass | quote}}' vtype='password'
+    debconf:
+      name: mysql-server
+      question: mysql-server/root_password
+      value: "{{mysql_root_pass | quote}}"
+      vtype: password
   - name: Confirm MySQL root password before installing
-    debconf: name='mysql-server' question='mysql-server/root_password_again' value='{{mysql_root_pass | quote}}' vtype='password'
+    debconf:
+      name: mysql-server
+      question: mysql-server/root_password_again
+      value: "{{mysql_root_pass | quote}}"
+      vtype: password
   - name: Install MySQL
     apt: pkg=mysql-server state=latest
   - name: Make sure MySQL is running
     action: service name=mysql state=started enabled=true
 
   # PHP
-
   - name: Install PHP packages
     apt: name={{ item }} state=latest
     with_items:
@@ -44,9 +50,8 @@
       - php-gd
       - php-curl
       - php-xdebug
-      - phpunit
       - composer
-    notify: restart apache
+    notify: restart-apache
 
   # Ruby
   - name: Install Ruby
@@ -55,7 +60,9 @@
   # Node.js
   - name: Download Node.js PPM
     get_url:
-      url=https://deb.nodesource.com/setup_6.x dest=/tmp/setup.sh mode=0440
+      url: https://deb.nodesource.com/setup_6.x
+      dest: /tmp/setup.sh
+      mode: 0440
   - name: Install Node.js PPM
     shell: bash /tmp/setup.sh
   - name: Install Node.js
@@ -63,19 +70,31 @@
 
   # SSH
   - name: Create ~/.ssh directory
-    file: path=/home/ubuntu/.ssh state=directory owner=ubuntu group=ubuntu mode=0700
+    file:
+      path: /home/ubuntu/.ssh
+      state: directory
+      owner: ubuntu
+      group: ubuntu
+      mode: 0700
   - name: Download the insecure key for vagrant user
-    get_url: url=https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub dest=/home/ubuntu/.ssh/authorized_keys force=yes
+    get_url:
+      url: https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
+      dest: /home/ubuntu/.ssh/authorized_keys
+      force: yes
 
   # SSHD
-  - name: disable sshd password auth
-    lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication yes" line="PasswordAuthentication no"
+  - name: Disable sshd password auth
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: "^PasswordAuthentication yes"
+      line: "PasswordAuthentication no"
 
   # Optimization
-  - shell: bash /vagrant/clear.sh
+  - shell: bash /vagrant/scripts/cleanup.sh
+  - shell: bash /vagrant/scripts/minimize.sh
 
   handlers:
-    - name: restart apache
+    - name: restart-apache
       action: service name=apache2 state=restarted
-    - name: restart mysql
+    - name: restart-mysql
       action: service name=mysql state=restarted
