@@ -69,27 +69,6 @@
   - name: Install Node.js
     apt: name=nodejs state=latest
 
-  # SSH
-  - name: Create ~/.ssh directory
-    file:
-      path: /home/ubuntu/.ssh
-      state: directory
-      owner: ubuntu
-      group: ubuntu
-      mode: 0700
-  - name: Download the insecure key for vagrant user
-    get_url:
-      url: https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
-      dest: /home/ubuntu/.ssh/authorized_keys
-      force: yes
-
-  # SSHD
-  - name: Disable sshd password auth
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: "^PasswordAuthentication yes"
-      line: "PasswordAuthentication no"
-
   # Optimization
   - shell: bash /vagrant/provision/scripts/cleanup.sh
   - shell: bash /vagrant/provision/scripts/minimize.sh
