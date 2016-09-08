@@ -12,6 +12,7 @@
       - ruby-dev
       - libsqlite3-dev
       - jq
+      - subversion
 
   # Apache2
   - name: Ensure apache is installed

@@ -19,6 +19,7 @@ $ vagrant plugin install vagrant-vbguest
 Provision.
 
 ```
+$ vagrant box update
 $ vagrant up
 ```
 
