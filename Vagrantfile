@@ -7,12 +7,12 @@ Vagrant.configure("2") do |config|
   config.vbguest.auto_update = true
   config.vm.box_check_update = true
 
+  config.vm.network :private_network, ip:  "192.168.33.10"
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
-
-  config.vm.network "private_network", ip: "192.168.33.10"
 
   config.vm.synced_folder ".", "/vagrant", :mount_options => ['dmode=755', 'fmode=644']
 
