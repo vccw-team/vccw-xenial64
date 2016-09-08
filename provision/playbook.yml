@@ -13,6 +13,7 @@
       - libsqlite3-dev
       - jq
       - subversion
+      - curl
 
   # Apache2
   - name: Ensure apache is installed
