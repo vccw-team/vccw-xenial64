@@ -33,5 +33,5 @@ $ bundle exec rake spec
 Create a package.
 
 ```
-$ vagrant package --vagrantfile Vagrantfile.dist
+$ vagrant package
 ```
