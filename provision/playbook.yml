@@ -14,6 +14,7 @@
       - jq
       - subversion
       - curl
+      - gettext
 
   # Apache2
   - name: Ensure apache is installed

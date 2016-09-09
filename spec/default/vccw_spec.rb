@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+
+
 describe package('apache2') do
   it { should be_installed }
 end
@@ -53,4 +55,21 @@ describe command('ruby -v') do
   let(:disable_sudo) { true }
   its(:exit_status) { should eq 0 }
   its(:stdout) { should match /ruby 2\.3\./ }
+end
+
+commands = %w{
+  curl
+  gettext
+  git
+  jq
+  msgfmt
+  msgmerge
+  svn
+}
+
+commands.each do |commands|
+  describe command("which " + Shellwords.shellescape(commands)) do
+    let(:disable_sudo) { true }
+    its(:exit_status) { should eq 0 }
+  end
 end
