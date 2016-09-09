@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-
-
 describe package('apache2') do
   it { should be_installed }
 end
@@ -14,9 +12,14 @@ end
 describe command('apache2ctl -M') do
     its(:exit_status) { should eq 0 }
     its(:stdout) { should match /rewrite_module/ }
+    its(:stdout) { should match /ssl_module/ }
 end
 
 describe port(80) do
+  it { should be_listening }
+end
+
+describe port(443) do
   it { should be_listening }
 end
 
