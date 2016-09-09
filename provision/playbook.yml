@@ -18,6 +18,8 @@
   # Apache2
   - name: Ensure apache is installed
     apt: pkg=apache2 state=latest
+  - name: Activate mod rewrite
+    apache2_module: state=present name=rewrite
   - name: Make sure apache is running
     action: service name=apache2 state=started enabled=true
 
