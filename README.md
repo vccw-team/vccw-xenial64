@@ -42,7 +42,7 @@ Run with VCCW.
 $ vagrant box add vccw-xenial64 package.box --force
 ```
 
-Edit the site.yml in the VCCW v3 like following.
+Edit the `site.yml` in the VCCW v3 like following.
 
 ```
 wp_box: vccw-xenial64
