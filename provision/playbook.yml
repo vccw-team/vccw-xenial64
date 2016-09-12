@@ -15,6 +15,7 @@
       - subversion
       - curl
       - gettext
+      - python-mysqldb
 
   # Apache2
   - name: Ensure apache is installed
