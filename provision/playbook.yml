@@ -6,7 +6,7 @@
   tasks:
 
   - name: Install common packages
-    apt: name={{ item }} state=latest
+    apt: name={{ item }} state=latest update_cache=yes
     with_items:
       - build-essential
       - ruby-dev
@@ -41,23 +41,23 @@
       value: "{{mysql_root_pass | quote}}"
       vtype: password
   - name: Install MySQL
-    apt: pkg=mysql-server state=latest
+    apt: pkg=mysql-server state=latest update_cache=yes
   - name: Make sure MySQL is running
     action: service name=mysql state=started enabled=true
 
   # PHP
   - name: Install PHP packages
-    apt: name={{ item }} state=latest
+    apt: name={{ item }} state=latest update_cache=yes
     with_items:
-      - php
-      - libapache2-mod-php
-      - php-cli
-      - php-dev
-      - php-mbstring
-      - php-mcrypt
-      - php-mysql
-      - php-gd
-      - php-curl
+      - php7.0
+      - libapache2-mod-php7.0
+      - php7.0-cli
+      - php7.0-dev
+      - php7.0-mbstring
+      - php7.0-mcrypt
+      - php7.0-mysql
+      - php7.0-gd
+      - php7.0-curl
       - php-xdebug
       - composer
     notify: restart-apache
