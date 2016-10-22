@@ -59,7 +59,6 @@
       - php7.0-gd
       - php7.0-curl
       - php-xdebug
-      - composer
     notify: restart-apache
 
   # Ruby
