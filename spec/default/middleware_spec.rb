@@ -51,7 +51,7 @@ end
 describe command('node -v') do
   let(:disable_sudo) { true }
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should match /v6\.5\.0/ }
+  its(:stdout) { should match /v6\./ }
 end
 
 describe command('ruby -v') do
