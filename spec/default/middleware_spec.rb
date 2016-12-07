@@ -68,6 +68,7 @@ commands = %w{
   msgfmt
   msgmerge
   svn
+  convert
 }
 
 commands.each do |commands|
