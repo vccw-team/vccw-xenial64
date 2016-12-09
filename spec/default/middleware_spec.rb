@@ -60,6 +60,37 @@ describe command('ruby -v') do
   its(:stdout) { should match /ruby 2\.3\./ }
 end
 
+packages = %w{
+  git
+  build-essential
+  ruby-dev
+  libsqlite3-dev
+  jq
+  subversion
+  curl
+  gettext
+  python-mysqldb
+  imagemagick
+  php7.0
+  libapache2-mod-php7.0
+  php7.0-cli
+  php7.0-dev
+  php7.0-mbstring
+  php7.0-mcrypt
+  php7.0-mysql
+  php7.0-gd
+  php7.0-curl
+  php7.0-zip
+  php-xdebug
+  php-imagick
+}
+
+packages.each do |package|
+  describe package(package) do
+    it { should be_installed }
+  end
+end
+
 commands = %w{
   curl
   gettext
@@ -71,8 +102,8 @@ commands = %w{
   convert
 }
 
-commands.each do |commands|
-  describe command("which " + Shellwords.shellescape(commands)) do
+commands.each do |command|
+  describe command("which " + Shellwords.shellescape(command)) do
     let(:disable_sudo) { true }
     its(:exit_status) { should eq 0 }
   end
