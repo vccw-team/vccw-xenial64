@@ -18,5 +18,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "provision/playbook.yml"
+    ansible.playbook = "provision/cleanup.yml"
   end
 end
