@@ -75,10 +75,6 @@
   - name: Install Node.js
     apt: name=nodejs state=latest
 
-  # Optimization
-  - shell: bash /vagrant/provision/scripts/cleanup.sh
-  - shell: bash /vagrant/provision/scripts/minimize.sh
-
   handlers:
     - name: restart-apache
       action: service name=apache2 state=restarted
