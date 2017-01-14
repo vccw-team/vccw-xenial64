@@ -18,6 +18,7 @@
       - gettext
       - python-mysqldb
       - imagemagick
+      - net-tools
 
   # Apache2
   - name: Ensure apache is installed

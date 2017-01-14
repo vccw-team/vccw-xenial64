@@ -1,5 +1,7 @@
 # Ubuntu/Xenial64 based box for the VCCW v3.x
 
+[![Build Status](https://travis-ci.org/vccw-team/vccw-xenial64.svg?branch=master)](https://travis-ci.org/vccw-team/vccw-xenial64)
+
 ## What's installed
 
 * Apache
