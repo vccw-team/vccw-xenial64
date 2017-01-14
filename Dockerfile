@@ -26,4 +26,3 @@ RUN apt-get update -y && \
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
-USER ubuntu
