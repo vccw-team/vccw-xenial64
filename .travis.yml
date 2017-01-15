@@ -8,7 +8,7 @@ before_install:
   - bundle install --path vendor/bundle
   - docker pull ubuntu:16.04
   - docker build -t vccw .
-  - docker run -idt --name vccw-test --privileged --volume="${PWD}":${VM_DIR}/:rw vccw "/sbin/init"
+  - docker run -idt --name vccw-test --privileged --volume="$(pwd)":${VM_DIR}/:rw vccw "/sbin/init"
   - sleep 120s
 
 script:
