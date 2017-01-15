@@ -31,3 +31,4 @@ RUN rm -rf /usr/share/doc && \
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
+EXPOSE 80 443 3306
