@@ -27,20 +27,20 @@ describe package('mysql-server') do
   it { should be_installed }
 end
 
-describe service('mysql') do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe port(3306) do
-  it { should be_listening }
-end
-
-describe command('echo "show databases;" | mysql -uroot -pwordpress') do
-  let(:disable_sudo) { true }
-  its(:exit_status) { should eq 0 }
-  its(:stdout) { should match /information_schema/ }
-end
+# describe service('mysql') do
+#   it { should be_enabled }
+#   it { should be_running }
+# end
+#
+# describe port(3306) do
+#   it { should be_listening }
+# end
+#
+# describe command('echo "show databases;" | mysql -uroot -pwordpress') do
+#   let(:disable_sudo) { true }
+#   its(:exit_status) { should eq 0 }
+#   its(:stdout) { should match /information_schema/ }
+# end
 
 describe command('php -v') do
   let(:disable_sudo) { true }
