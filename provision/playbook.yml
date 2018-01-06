@@ -72,6 +72,7 @@
       - php7.0-gd
       - php7.0-curl
       - php7.0-zip
+      - php7.0-xml
       - php-xdebug
       - php-imagick
     notify: restart-apache
