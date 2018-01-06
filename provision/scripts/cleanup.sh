@@ -49,6 +49,8 @@ rm -rf /var/lib/apt/lists/*
 rm -Rf /usr/share/man
 find /var/cache -type f -exec rm -rf {} \;
 
+apt-get -y update
+apt-get -y upgrade
 apt-get -y autoremove;
 apt-get -y clean;
 
@@ -58,4 +60,3 @@ unset HISTFILE
 rm -f /root/.bash_history
 rm -f /home/vagrant/.bash_history
 find /var/log -type f | while read f; do echo -ne '' > $f; done;
-
