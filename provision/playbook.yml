@@ -5,6 +5,12 @@
 
   tasks:
 
+  - name: Add repositories
+    apt_repository: repo={{ item }}
+    with_items:
+      - "ppa:brightbox/ruby-ng"
+      - "ppa:ondrej/php"
+
   - name: Install common packages
     apt: name={{ item }} state=latest update_cache=yes
     with_items:
@@ -19,6 +25,10 @@
       - python-mysqldb
       - imagemagick
       - net-tools
+      - ruby2.4
+      - ruby2.4-dev
+      - software-properties-common
+      - python-software-properties
 
   # Apache2
   - name: Ensure apache is installed
@@ -65,10 +75,6 @@
       - php-xdebug
       - php-imagick
     notify: restart-apache
-
-  # Ruby
-  - name: Install Ruby
-    apt: pkg=ruby state=latest
 
   # Node.js
   - name: Install Node.js PPM
