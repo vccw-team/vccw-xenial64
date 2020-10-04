@@ -25,10 +25,10 @@
       - python-mysqldb
       - imagemagick
       - net-tools
-      - ruby2.4
-      - ruby2.4-dev
+      - ruby2.7
+      - ruby2.7-dev
       - software-properties-common
-      - python-software-properties
+      - python3-software-properties
 
   # Apache2
   - name: Ensure apache is installed
@@ -62,24 +62,23 @@
   - name: Install PHP packages
     apt: name={{ item }} state=latest update_cache=yes
     with_items:
-      - php7.0
-      - libapache2-mod-php7.0
-      - php7.0-cli
-      - php7.0-dev
-      - php7.0-mbstring
-      - php7.0-mcrypt
-      - php7.0-mysql
-      - php7.0-gd
-      - php7.0-curl
-      - php7.0-zip
-      - php7.0-xml
+      - php7.4
+      - libapache2-mod-php7.4
+      - php7.4-cli
+      - php7.4-dev
+      - php7.4-mbstring
+      - php7.4-mysql
+      - php7.4-gd
+      - php7.4-curl
+      - php7.4-zip
+      - php7.4-xml
       - php-xdebug
       - php-imagick
     notify: restart-apache
 
   # Node.js
   - name: Install Node.js PPM
-    shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+    shell: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
   - name: Install Node.js
     apt: name=nodejs state=latest
 
